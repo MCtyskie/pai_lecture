@@ -21,8 +21,7 @@ public class Task {
     private Type type;
     private Status status;
 
-    public Task(int taskId, String title, String description, Type type, Status status) {
-        this.taskId = taskId;
+    public Task(String title, String description, Type type, Status status) {
         this.title = title;
         this.description = description;
         this.dateAdded = LocalDateTime.now();
