@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -31,12 +32,10 @@ public class UserService {
 
     //task c
     public User findUserByIdOrEmail(int id){
-        User u=userRepository.findUserByUserId(id).orElse(null);
-        return u;
+        return userRepository.findUserByUserId(id).orElse(null);
     }
     public User findUserByIdOrEmail(String email){
-        User u=userRepository.findUserByEmail(email).orElse(null);
-        return u;
+        return userRepository.findUserByEmail(email).orElse(null);
     }
 
     //task d
@@ -49,4 +48,14 @@ public class UserService {
     }
 
     //task e
+    public String deleteUser(Integer userId){
+        Optional<User> currentUser=userRepository.findUserByUserId(userId);
+        if(currentUser.isPresent()){
+            User user=currentUser.get();
+            String message=String.format("User with id: %d deleted",user.getUserId());
+            userRepository.delete(user);
+            return message;
+        }
+        return "";
+    }
 }

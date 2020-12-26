@@ -1,5 +1,7 @@
 package com.pai.application.Models;
 
+import com.pai.application.Enums.Status;
+import com.pai.application.Enums.Type;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -28,19 +30,17 @@ public class Task {
         this.type = type;
         this.status = status;
     }
+    public Task(String title, String description, Type type, Status status, User supervisor) {
+        this.title = title;
+        this.description = description;
+        this.dateAdded = LocalDateTime.now();
+        this.type = type;
+        this.status = status;
+        this.supervisor=supervisor;
+    }
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     //@JoinColumn(name="supervisor_id",nullable = false)
     private User supervisor;
 
 
-    private enum Type{
-        TASK,
-        BUG,
-        FEATURE
-    }
-    private enum Status{
-        NEW,
-        IN_PROGRESS,
-        DONE
-    }
 }
