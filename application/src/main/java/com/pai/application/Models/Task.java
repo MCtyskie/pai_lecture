@@ -1,5 +1,7 @@
 package com.pai.application.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.pai.application.Enums.Status;
 import com.pai.application.Enums.Type;
 import lombok.Data;
@@ -38,8 +40,9 @@ public class Task {
         this.status = status;
         this.supervisor=supervisor;
     }
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)//, cascade = CascadeType.ALL)
     //@JoinColumn(name="supervisor_id",nullable = false)
+    @JsonIgnore
     private User supervisor;
 
 
