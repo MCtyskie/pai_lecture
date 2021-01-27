@@ -1,13 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
-import UserComponent from './components/UserComponent';
+import React, { Component } from 'react';
+import User from "./User"
 
-function App() {
-  return (
-    <div className="App">
-      <UserComponent />
-    </div>
-  );
+class App extends Component {
+
+  state = {
+    data: [],
+  }
+
+  componentDidMount() {
+    fetch('http://localhost:8081/users')
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        this.setState({ data })
+      }
+      );
+  }
+
+
+  render() {
+    return (
+      <div>
+        {this.state.data.map(user => <User info={user}/>)}
+      </div>
+    );
+  }
 }
 
 export default App;
