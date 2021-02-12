@@ -1,4 +1,4 @@
-# PAI_lecture
+# pai_lecture
 Web application programming lecture exam.
 
 ## Tasks:
